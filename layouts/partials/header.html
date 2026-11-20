@@ -1,0 +1,13 @@
+{{ $cur := .RelPermalink }}
+<header class="site">
+  <div class="wrap site-inner">
+    <a class="wordmark" href="{{ "/" | relURL }}">Patch Dispatch</a>
+    <nav aria-label="Main">
+      <ul>
+        {{ range slice (dict "name" "Dispatches" "url" "/posts/") (dict "name" "About" "url" "/about/") (dict "name" "Corrections" "url" "/corrections/") (dict "name" "RSS" "url" "/index.xml") }}
+        <li><a href="{{ .url | relURL }}"{{ if eq .url $cur }} aria-current="page"{{ end }}>{{ .name }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+  </div>
+</header>

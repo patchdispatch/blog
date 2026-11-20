@@ -1,0 +1,10 @@
+{{ define "main" }}
+<h1 class="page-title">{{ .Title }}</h1>
+{{ with .Pages }}
+<ol class="dispatches">
+  {{ range .ByDate.Reverse }}{{ partial "dispatch-row.html" . }}{{ end }}
+</ol>
+{{ else }}
+<p class="empty">No dispatches yet.</p>
+{{ end }}
+{{ end }}

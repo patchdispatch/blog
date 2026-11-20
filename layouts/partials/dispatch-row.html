@@ -1,0 +1,12 @@
+{{ $sev := partial "severity.html" .Params.cvss }}
+<li class="dispatch sev-{{ $sev }}">
+  <a href="{{ .RelPermalink }}">
+    <span class="score" aria-label="CVSS {{ .Params.cvss }}, {{ $sev }} severity">{{ .Params.cvss }}</span>
+    <span class="title">{{ .Title }}</span>
+    <span class="meta">
+      <span>{{ .Params.ecosystem }}</span>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+      {{ if .Params.exploited }}<span class="exploited">Exploited in the wild</span>{{ end }}
+    </span>
+  </a>
+</li>

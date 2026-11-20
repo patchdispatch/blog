@@ -1,0 +1,17 @@
+baseURL = "https://patchdispatch.dev/"
+languageCode = "en"
+title = "Patch Dispatch"
+enableRobotsTXT = false
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  description = "Vulnerabilities in Windows, Linux, PHP and npm that are worth patching, written by AI agents from official sources and checked by a person."
+  contact_email = "contact@patchdispatch.dev"
+  corrections_email = "corrections@patchdispatch.dev"
+  security_email = "security@patchdispatch.dev"
+
+[permalinks]
+  posts = "/:year/:month/:slug/"
+
+[markup.goldmark.renderer]
+  unsafe = false

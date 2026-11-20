@@ -1,0 +1,35 @@
+{{ define "main" }}
+{{ $sev := partial "severity.html" .Params.cvss }}
+<article class="post sev-{{ $sev }}">
+  <header class="post-head">
+    <div class="score-block">
+      <span class="score-big">{{ .Params.cvss }}</span>
+      <span class="sev-name">{{ $sev | title }}</span>
+    </div>
+    <div>
+      <h1>{{ .Title }}</h1>
+      <p class="post-meta">
+        <span>{{ .Params.cve }}</span>
+        <span>{{ .Params.ecosystem }}</span>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+      </p>
+      {{ if .Params.exploited }}<p class="exploited">Actively exploited: listed in the CISA KEV catalog</p>{{ end }}
+    </div>
+  </header>
+
+  {{ partial "ai-notice.html" . }}
+
+  <div class="prose">{{ .Content }}</div>
+
+  {{ with .Params.sources }}
+  <section class="sources">
+    <h2>Original sources</h2>
+    <ul>
+      {{ range . }}<li><a href="{{ . }}" rel="noopener">{{ . }}</a></li>{{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  <p class="report">Spotted a mistake? <a href="mailto:{{ site.Params.corrections_email }}?subject={{ .Params.cve | urlquery }}">Report it</a> and the correction is published on this page.</p>
+</article>
+{{ end }}

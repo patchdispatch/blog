@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="intro">
+  <h1>Patch Dispatch</h1>
+  <p>Vulnerabilities in Windows, Linux, PHP and npm that are worth patching. Written by AI agents from official sources, checked by a person before they go out.</p>
+</section>
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ with $posts }}
+<ol class="dispatches">
+  {{ range .ByDate.Reverse }}{{ partial "dispatch-row.html" . }}{{ end }}
+</ol>
+{{ else }}
+<p class="empty">No dispatches yet. The first one is on its way; follow the <a href="{{ "index.xml" | relURL }}">RSS feed</a> to get it when it lands.</p>
+{{ end }}
+{{ end }}
