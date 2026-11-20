@@ -1,0 +1,58 @@
+name: build-and-deploy
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  HUGO_VERSION: "0.139.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install Hugo (pinned, checksum verified)
+        run: bash scripts/install-hugo.sh && echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Check posts (required fields, official HTTPS sources only)
+        run: bash scripts/check-posts.sh
+      - name: Build
+        run: hugo --minify --gc
+      - name: Check the built site
+        run: bash scripts/check-built.sh
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install Hugo (pinned, checksum verified)
+        run: bash scripts/install-hugo.sh && echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Build
+        run: hugo --minify --gc
+      - name: Push the built site to the deploy branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd public
+          git init -q -b deploy
+          git config user.name "patchdispatch-ci"
+          git config user.email "ci@patchdispatch.dev"
+          git add -A
+          git commit -q -m "Deploy ${GITHUB_SHA}"
+          git push -q --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" deploy
