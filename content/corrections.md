@@ -9,4 +9,5 @@ To report a mistake, email [corrections@patchdispatch.dev](mailto:corrections@pa
 
 ## Corrections so far
 
-None yet.
+- **22 Nov 2026**, [LiteLLM remote code execution (CVE-2026-40217)](/2026/11/litellm-cve-2026-40217/): the post was labeled "npm"; LiteLLM is a Python package. Label corrected.
+- **22 Nov 2026**, [OpenSSH password bypass on musl Linux (CVE-2026-123158)](/2026/11/openssh-cve-2026-123158/): the first version did not state the affected conditions or fixed versions. Expanded from the vendor advisories.
