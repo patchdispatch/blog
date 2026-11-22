@@ -4,7 +4,7 @@
 set -euo pipefail
 shopt -s nullglob
 
-allowed='^(nvd\.nist\.gov|www\.cve\.org|cve\.org|osv\.dev|github\.com|msrc\.microsoft\.com|security-tracker\.debian\.org|ubuntu\.com|www\.ubuntu\.com|www\.cisa\.gov|nodejs\.org|www\.php\.net|php\.net)$'
+allowed='^(nvd\.nist\.gov|www\.cve\.org|cve\.org|osv\.dev|github\.com|msrc\.microsoft\.com|security-tracker\.debian\.org|ubuntu\.com|www\.ubuntu\.com|www\.cisa\.gov|nodejs\.org|www\.php\.net|php\.net|www\.openssh\.com|openssh\.com|alpinelinux\.org|security\.alpinelinux\.org|www\.openwall\.com|openwall\.com)$'
 fail=0
 
 for f in content/posts/*.md; do
