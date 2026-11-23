@@ -1,10 +1,10 @@
 {{ $posts := where site.RegularPages "Section" "posts" }}
-{{ $names := dict "windows" "Windows" "linux" "Linux" "php" "PHP" "npm" "npm" "python" "Python" }}
+{{ $names := dict "windows" "Windows" "linux" "Linux" "php" "PHP" "npm" "npm" "python" "Python" "enterprise" "Enterprise" }}
 <aside class="sidebar" aria-label="Browse">
   <section>
     <h2>Ecosystems</h2>
     <ul class="facet">
-      {{ range slice "windows" "linux" "php" "npm" "python" }}
+      {{ range slice "windows" "linux" "php" "npm" "python" "enterprise" }}
         {{ $n := len (where $posts "Params.ecosystem" .) }}
         {{ if $n }}<li><a href="{{ "posts/" | relURL }}?eco={{ . }}">{{ index $names . }}</a><span>{{ $n }}</span></li>{{ end }}
       {{ end }}

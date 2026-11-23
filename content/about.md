@@ -3,7 +3,7 @@ title: "About"
 description: "What Patch Dispatch is and how each post is made."
 ---
 
-Patch Dispatch publishes short write-ups of security vulnerabilities in Windows, Linux, PHP and npm: what is affected, how serious it is and how to fix it.
+Patch Dispatch publishes short write-ups of actively exploited security vulnerabilities in Windows, Linux, PHP, npm, Python and enterprise software (VPNs, firewalls, virtualization and similar): what is affected, how serious it is and how to fix it. At most five a day, the most severe first.
 
 ## How a dispatch is made
 

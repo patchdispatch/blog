@@ -4,7 +4,7 @@
 set -euo pipefail
 shopt -s nullglob
 
-allowed='^(nvd\.nist\.gov|www\.cve\.org|cve\.org|osv\.dev|www\.cisa\.gov|github\.com|msrc\.microsoft\.com|learn\.microsoft\.com|security-tracker\.debian\.org|www\.debian\.org|ubuntu\.com|www\.ubuntu\.com|access\.redhat\.com|nodejs\.org|www\.php\.net|php\.net|www\.openssh\.com|openssh\.com|alpinelinux\.org|security\.alpinelinux\.org|www\.openwall\.com|openwall\.com|pypi\.org|www\.npmjs\.com)$'
+allowed='^(nvd\.nist\.gov|www\.cve\.org|cve\.org|osv\.dev|www\.cisa\.gov|github\.com|msrc\.microsoft\.com|learn\.microsoft\.com|security-tracker\.debian\.org|www\.debian\.org|ubuntu\.com|www\.ubuntu\.com|access\.redhat\.com|nodejs\.org|www\.php\.net|php\.net|www\.openssh\.com|openssh\.com|alpinelinux\.org|security\.alpinelinux\.org|www\.openwall\.com|openwall\.com|pypi\.org|www\.npmjs\.com|sec\.cloudapps\.cisco\.com|www\.cisco\.com|forums\.ivanti\.com|fortiguard\.fortinet\.com|www\.fortinet\.com|support\.citrix\.com|support\.broadcom\.com|security\.paloaltonetworks\.com|psirt\.global\.sonicwall\.com|supportportal\.juniper\.net|kb\.juniper\.net|my\.f5\.com|www\.oracle\.com|confluence\.atlassian\.com|jira\.atlassian\.com|about\.gitlab\.com|gitlab\.com|www\.zyxel\.com|www\.sophos\.com|support\.checkpoint\.com|advisories\.checkpoint\.com|www\.solarwinds\.com|www\.veeam\.com|www\.jenkins\.io|www\.connectwise\.com|www\.progress\.com|community\.progress\.com|lists\.apache\.org|httpd\.apache\.org|tomcat\.apache\.org|logging\.apache\.org|activemq\.apache\.org|struts\.apache\.org)$'
 fail=0
 
 for f in content/posts/*.md; do
@@ -18,7 +18,7 @@ for f in content/posts/*.md; do
   done
   grep -qE '^ai_generated:[[:space:]]*true' <<<"$fm" || { echo "::error file=$f::ai_generated must be true"; fail=1; }
   grep -qE '^cve:[[:space:]]*"?CVE-[0-9]{4}-[0-9]{4,}"?' <<<"$fm" || { echo "::error file=$f::cve must look like CVE-YYYY-NNNN"; fail=1; }
-  grep -qE '^ecosystem:[[:space:]]*"?(windows|linux|php|npm|python)"?' <<<"$fm" || { echo "::error file=$f::ecosystem must be windows, linux, php, npm or python"; fail=1; }
+  grep -qE '^ecosystem:[[:space:]]*"?(windows|linux|php|npm|python|enterprise)"?' <<<"$fm" || { echo "::error file=$f::ecosystem must be windows, linux, php, npm, python or enterprise"; fail=1; }
 
   urls=$(grep -oE 'https?://[^ "'"'"')>]+' "$f" || true)
   [ -n "$urls" ] || { echo "::error file=$f::no source links"; fail=1; }
