@@ -1,7 +1,8 @@
 {{ define "main" }}
 <section class="intro">
   <h1>Patch Dispatch</h1>
-  <p>Actively exploited vulnerabilities in Windows, Linux, PHP, npm, Python and enterprise software, worth patching now. Written by AI agents from official sources, checked by a person before they go out.</p>
+  <p class="tagline">Patch it before they dispatch it.</p>
+  <p>Every vulnerability here is already being exploited in the wild: Windows, Linux, PHP, npm, Python and enterprise software. Written by AI agents from official sources, checked by a person before it goes out.</p>
 </section>
 {{ $posts := where site.RegularPages "Section" "posts" }}
 {{ with $posts }}
