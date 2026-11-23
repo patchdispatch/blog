@@ -17,6 +17,21 @@
     </div>
   </header>
 
+  {{ if or .Params.cve_published .Params.kev_added .Params.fix_released .Params.last_checked }}
+  <dl class="timeline">
+    {{ with .Params.cve_published }}<div><dt>CVE published</dt><dd><time datetime="{{ . }}">{{ dateFormat "2 Jan 2006" . }}</time></dd></div>{{ end }}
+    {{ with .Params.kev_added }}<div><dt>Exploitation confirmed (CISA KEV)</dt><dd><time datetime="{{ . }}">{{ dateFormat "2 Jan 2006" . }}</time></dd></div>{{ end }}
+    <div><dt>Fix released</dt><dd>{{ with .Params.fix_released }}<time datetime="{{ . }}">{{ dateFormat "2 Jan 2006" . }}</time>{{ else }}Not stated by the vendor yet{{ end }}</dd></div>
+    {{ with .Params.last_checked }}<div><dt>Last checked</dt><dd><time datetime="{{ . }}">{{ dateFormat "2 Jan 2006" . }}</time></dd></div>{{ end }}
+  </dl>
+  {{ end }}
+
+  {{ with .GetTerms "tags" }}
+  <ul class="chips post-tags" aria-label="Keywords">
+    {{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+  </ul>
+  {{ end }}
+
   {{ partial "ai-notice.html" . }}
 
   <div class="prose">{{ .Content }}</div>

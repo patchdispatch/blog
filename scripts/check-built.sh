@@ -8,7 +8,7 @@ for f in public/20*/**/index.html; do
   grep -q 'ai-notice' "$f" || { echo "::error::$f has no AI notice"; fail=1; }
 done
 
-for required in index.html 404.html .well-known/security.txt robots.txt css/site.css; do
+for required in index.html index.json posts/index.html js/search.js 404.html .well-known/security.txt robots.txt css/site.css; do
   [ -f "public/$required" ] || { echo "::error::public/$required is missing"; fail=1; }
 done
 

@@ -1,0 +1,46 @@
+{{ define "main" }}
+<h1 class="page-title">All dispatches</h1>
+
+<form class="finder" role="search" action="{{ "posts/" | relURL }}" method="get">
+  <div class="finder-q">
+    <label for="q">Search</label>
+    <input id="q" name="q" type="search" placeholder="CVE, product or vendor" autocomplete="off">
+  </div>
+  <div>
+    <label for="eco">Ecosystem</label>
+    <select id="eco" name="eco">
+      <option value="">All</option><option value="windows">Windows</option><option value="linux">Linux</option>
+      <option value="php">PHP</option><option value="npm">npm</option><option value="python">Python</option>
+    </select>
+  </div>
+  <div>
+    <label for="sev">Severity</label>
+    <select id="sev" name="sev">
+      <option value="">Any</option><option value="critical">Critical</option><option value="high">High</option>
+      <option value="medium">Medium</option><option value="low">Low</option>
+    </select>
+  </div>
+  <div>
+    <label for="sort">Sort</label>
+    <select id="sort" name="sort"><option value="new">Newest first</option><option value="cvss">Highest CVSS</option></select>
+  </div>
+</form>
+
+<p class="count" id="count" aria-live="polite"></p>
+
+<ol class="dispatches" id="results">
+  {{ range .Pages.ByDate.Reverse }}{{ partial "dispatch-row.html" . }}{{ end }}
+</ol>
+<p class="empty" id="no-results" hidden>No dispatches match. Try fewer words or another filter.</p>
+
+{{ with site.Taxonomies.tags }}
+<section class="keywords">
+  <h2>Browse by keyword</h2>
+  <ul class="chips">
+    {{ range first 30 .ByCount }}<li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span>{{ .Count }}</span></a></li>{{ end }}
+  </ul>
+</section>
+{{ end }}
+
+<script src="{{ "js/search.js" | relURL }}" defer></script>
+{{ end }}

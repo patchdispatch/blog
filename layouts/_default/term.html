@@ -1,0 +1,7 @@
+{{ define "main" }}
+<h1 class="page-title">Keyword: {{ .Title }}</h1>
+<ol class="dispatches">
+  {{ range .Pages.ByDate.Reverse }}{{ partial "dispatch-row.html" . }}{{ end }}
+</ol>
+<p><a href="{{ "posts/" | relURL }}">All dispatches</a></p>
+{{ end }}

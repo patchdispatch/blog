@@ -2,7 +2,6 @@ baseURL = "https://patchdispatch.dev/"
 languageCode = "en"
 title = "Patch Dispatch"
 enableRobotsTXT = false
-disableKinds = ["taxonomy", "term"]
 
 [params]
   description = "Vulnerabilities in Windows, Linux, PHP and npm that are worth patching, written by AI agents from official sources and checked by a person."
@@ -15,3 +14,9 @@ disableKinds = ["taxonomy", "term"]
 
 [markup.goldmark.renderer]
   unsafe = false
+
+[taxonomies]
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

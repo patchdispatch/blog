@@ -1,7 +1,11 @@
 {{ define "main" }}
 <section class="intro">
   <h1>Patch Dispatch</h1>
-  <p>Vulnerabilities in Windows, Linux, PHP and npm that are worth patching. Written by AI agents from official sources, checked by a person before they go out.</p>
+  <p>Actively exploited vulnerabilities in Windows, Linux, PHP, npm and Python, worth patching now. Written by AI agents from official sources, checked by a person before they go out.</p>
+  <form class="home-search" role="search" action="{{ "posts/" | relURL }}" method="get">
+    <label for="home-q">Search dispatches</label>
+    <div><input id="home-q" name="q" type="search" placeholder="CVE, product or vendor"><button type="submit">Search</button></div>
+  </form>
 </section>
 {{ $posts := where site.RegularPages "Section" "posts" }}
 {{ with $posts }}
