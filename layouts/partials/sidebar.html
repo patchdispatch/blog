@@ -1,0 +1,32 @@
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ $names := dict "windows" "Windows" "linux" "Linux" "php" "PHP" "npm" "npm" "python" "Python" }}
+<aside class="sidebar" aria-label="Browse">
+  <section>
+    <h2>Ecosystems</h2>
+    <ul class="facet">
+      {{ range slice "windows" "linux" "php" "npm" "python" }}
+        {{ $n := len (where $posts "Params.ecosystem" .) }}
+        {{ if $n }}<li><a href="{{ "posts/" | relURL }}?eco={{ . }}">{{ index $names . }}</a><span>{{ $n }}</span></li>{{ end }}
+      {{ end }}
+    </ul>
+  </section>
+  <section>
+    <h2>Severity</h2>
+    <ul class="facet">
+      {{ range slice "critical" "high" "medium" "low" }}
+        {{ $sev := . }}{{ $n := 0 }}
+        {{ range $posts }}{{ if eq (partial "severity.html" .Params.cvss) $sev }}{{ $n = add $n 1 }}{{ end }}{{ end }}
+        {{ if $n }}<li class="sev-{{ $sev }}"><a href="{{ "posts/" | relURL }}?sev={{ $sev }}">{{ $sev | title }}</a><span>{{ $n }}</span></li>{{ end }}
+      {{ end }}
+    </ul>
+  </section>
+  {{ with site.Taxonomies.tags }}
+  <section>
+    <h2>Keywords</h2>
+    <ul class="chips">
+      {{ range first 40 .ByCount }}<li><a href="{{ .Page.RelPermalink }}">{{ .Page.Data.Term }} <span>{{ .Count }}</span></a></li>{{ end }}
+    </ul>
+    <p class="all-tags"><a href="{{ "tags/" | relURL }}">All keywords</a></p>
+  </section>
+  {{ end }}
+</aside>

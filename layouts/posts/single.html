@@ -28,7 +28,7 @@
 
   {{ with .GetTerms "tags" }}
   <ul class="chips post-tags" aria-label="Keywords">
-    {{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+    {{ range . }}<li><a href="{{ .RelPermalink }}">{{ .Data.Term }}</a></li>{{ end }}
   </ul>
   {{ end }}
 

@@ -26,21 +26,18 @@
   </div>
 </form>
 
-<p class="count" id="count" aria-live="polite"></p>
+<div class="with-sidebar">
+  <div class="main-col">
+    <p class="count" id="count" aria-live="polite"></p>
+    <ol class="dispatches" id="results">
+      {{ range .Pages.ByDate.Reverse }}{{ partial "dispatch-row.html" . }}{{ end }}
+    </ol>
+    <p class="empty" id="no-results" hidden>No dispatches match. Try fewer words or another filter.</p>
+    <nav class="pager" id="pager" aria-label="Pages" hidden></nav>
+  </div>
+  {{ partial "sidebar.html" . }}
+</div>
 
-<ol class="dispatches" id="results">
-  {{ range .Pages.ByDate.Reverse }}{{ partial "dispatch-row.html" . }}{{ end }}
-</ol>
-<p class="empty" id="no-results" hidden>No dispatches match. Try fewer words or another filter.</p>
-
-{{ with site.Taxonomies.tags }}
-<section class="keywords">
-  <h2>Browse by keyword</h2>
-  <ul class="chips">
-    {{ range first 30 .ByCount }}<li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span>{{ .Count }}</span></a></li>{{ end }}
-  </ul>
-</section>
-{{ end }}
 
 {{ $js := resources.Get "js/search.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>

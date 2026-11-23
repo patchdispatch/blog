@@ -1,7 +1,19 @@
 {{ define "main" }}
-<h1 class="page-title">Keyword: {{ .Title }}</h1>
-<ol class="dispatches">
-  {{ range .Pages.ByDate.Reverse }}{{ partial "dispatch-row.html" . }}{{ end }}
-</ol>
-<p><a href="{{ "posts/" | relURL }}">All dispatches</a></p>
+<h1 class="page-title">Keyword: {{ .Data.Term }}</h1>
+<div class="with-sidebar">
+  <div class="main-col">
+    {{ $pager := .Paginate .Pages.ByDate.Reverse }}
+    <ol class="dispatches">
+      {{ range $pager.Pages }}{{ partial "dispatch-row.html" . }}{{ end }}
+    </ol>
+    {{ if gt $pager.TotalPages 1 }}
+    <nav class="pager" aria-label="Pages">
+      {{ with $pager.Prev }}<a href="{{ .URL }}" rel="prev">Previous</a>{{ end }}
+      <span class="pager-info">Page {{ $pager.PageNumber }} of {{ $pager.TotalPages }}</span>
+      {{ with $pager.Next }}<a href="{{ .URL }}" rel="next">Next</a>{{ end }}
+    </nav>
+    {{ end }}
+  </div>
+  {{ partial "sidebar.html" . }}
+</div>
 {{ end }}

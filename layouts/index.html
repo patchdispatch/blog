@@ -5,9 +5,16 @@
 </section>
 {{ $posts := where site.RegularPages "Section" "posts" }}
 {{ with $posts }}
-<ol class="dispatches">
-  {{ range .ByDate.Reverse }}{{ partial "dispatch-row.html" . }}{{ end }}
-</ol>
+<div class="with-sidebar">
+  <div class="main-col">
+    <ol class="dispatches">
+      {{ range first 10 .ByDate.Reverse }}{{ partial "dispatch-row.html" . }}{{ end }}
+    </ol>
+    {{ if gt (len .) 10 }}<p class="more"><a href="{{ "posts/" | relURL }}?page=2">Older dispatches</a></p>{{ end }}
+    <p class="more"><a href="{{ "posts/" | relURL }}">All dispatches, with search and filters</a></p>
+  </div>
+  {{ partial "sidebar.html" . }}
+</div>
 {{ else }}
 <p class="empty">No dispatches yet. The first one is on its way; follow the <a href="{{ "index.xml" | relURL }}">RSS feed</a> to get it when it lands.</p>
 {{ end }}
