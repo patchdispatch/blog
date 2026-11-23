@@ -42,5 +42,6 @@
 </section>
 {{ end }}
 
-<script src="{{ "js/search.js" | relURL }}" defer></script>
+{{ $js := resources.Get "js/search.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 {{ end }}

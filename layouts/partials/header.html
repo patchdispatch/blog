@@ -9,5 +9,9 @@
         {{ end }}
       </ul>
     </nav>
+    <form class="header-search" role="search" action="{{ "posts/" | relURL }}" method="get">
+      <label for="site-q" class="visually-hidden">Search dispatches</label>
+      <input id="site-q" name="q" type="search" placeholder="Search dispatches" autocomplete="off">
+    </form>
   </div>
 </header>

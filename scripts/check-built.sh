@@ -8,7 +8,9 @@ for f in public/20*/**/index.html; do
   grep -q 'ai-notice' "$f" || { echo "::error::$f has no AI notice"; fail=1; }
 done
 
-for required in index.html index.json posts/index.html js/search.js 404.html .well-known/security.txt robots.txt css/site.css; do
+ls public/css/site.*.css >/dev/null 2>&1 || { echo "::error::fingerprinted CSS missing"; fail=1; }
+ls public/js/search.*.js >/dev/null 2>&1 || { echo "::error::fingerprinted search script missing"; fail=1; }
+for required in index.html index.json posts/index.html 404.html .well-known/security.txt robots.txt; do
   [ -f "public/$required" ] || { echo "::error::public/$required is missing"; fail=1; }
 done
 
