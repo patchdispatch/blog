@@ -1,7 +1,14 @@
 {{ $cur := .RelPermalink }}
 <header class="site">
   <div class="wrap site-inner">
-    <a class="wordmark" href="{{ "/" | relURL }}">Patch Dispatch</a>
+    <a class="wordmark" href="{{ "/" | relURL }}"><svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.5" fill="#1d2a36" stroke="#3a4a58" stroke-width="1.5"/>
+  <rect x="14" y="13" width="38" height="38" rx="5" fill="#eef1f4"/>
+  <rect x="14" y="13" width="9" height="38" rx="2" fill="#d1601a"/>
+  <rect x="28" y="22" width="18" height="5" rx="2.5" fill="#1d2a36"/>
+  <rect x="28" y="31" width="13" height="4" rx="2" fill="#56636f"/>
+  <rect x="28" y="39" width="16" height="4" rx="2" fill="#56636f"/>
+</svg><span>Patch Dispatch</span></a>
     <nav aria-label="Main">
       <ul>
         {{ range slice (dict "name" "Dispatches" "url" "/posts/") (dict "name" "About" "url" "/about/") (dict "name" "Corrections" "url" "/corrections/") (dict "name" "RSS" "url" "/index.xml") }}

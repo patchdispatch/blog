@@ -4,6 +4,9 @@
     <ul>
       <li><a href="{{ "disclaimer/" | relURL }}">Disclaimer</a></li>
       <li><a href="{{ "corrections/" | relURL }}">Corrections</a></li>
+      <li><a href="{{ "privacy/" | relURL }}">Privacy</a></li>
+      <li><a href="{{ "cookies/" | relURL }}">Cookies</a></li>
+      {{ if site.Params.ga_id }}<li><button type="button" class="linklike" data-consent-settings hidden>Cookie settings</button></li>{{ end }}
       <li><a href="{{ ".well-known/security.txt" | relURL }}">security.txt</a></li>
       <li><a href="https://github.com/patchdispatch">Source on GitHub</a></li>
     </ul>

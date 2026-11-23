@@ -8,6 +8,9 @@ enableRobotsTXT = false
   contact_email = "contact@patchdispatch.dev"
   corrections_email = "corrections@patchdispatch.dev"
   security_email = "security@patchdispatch.dev"
+  privacy_email = "contact@patchdispatch.dev"
+  # Google Analytics 4 measurement ID (G-XXXXXXXXXX). Empty = no analytics code on the site at all.
+  ga_id = "G-M9KJXRQ509"
 
 [permalinks]
   posts = "/:year/:month/:slug/"

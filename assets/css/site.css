@@ -206,3 +206,20 @@ header.site nav { margin-left: auto; }
   .with-sidebar { grid-template-columns: 1fr; gap: 1.5rem; }
   .sidebar { position: static; }
 }
+
+/* Logo */
+.wordmark { display: inline-flex; align-items: center; gap: 0.6rem; }
+.logo-mark { width: 2rem; height: 2rem; flex: none; }
+
+/* Consent banner */
+.consent[hidden] { display: none; }
+.consent { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 0 1rem 1rem; font-family: var(--sans); }
+.consent-inner { max-width: 46rem; margin: 0 auto; background: var(--paper); color: var(--ink); border: 1px solid var(--line);
+  border-radius: 6px; padding: 1rem 1.1rem; box-shadow: 0 6px 24px rgba(0,0,0,0.18); }
+.consent-title { font-weight: 700; margin: 0 0 0.35rem; }
+.consent p { font-size: 0.92rem; line-height: 1.5; margin: 0 0 0.8rem; }
+.consent-actions { display: flex; gap: 0.6rem; justify-content: flex-end; }
+.consent-actions button { font: 600 0.92rem var(--sans); min-width: 6.5rem; height: 2.3rem; border-radius: 4px; cursor: pointer;
+  border: 1px solid var(--ink); background: var(--paper); color: var(--ink); }
+.consent-actions button[data-consent="granted"] { background: var(--ink); color: var(--paper); }
+.linklike { font: inherit; color: var(--muted); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
