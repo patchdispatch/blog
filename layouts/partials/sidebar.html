@@ -1,6 +1,17 @@
 {{ $posts := where site.RegularPages "Section" "posts" }}
 {{ $names := dict "windows" "Windows" "linux" "Linux" "php" "PHP" "npm" "npm" "python" "Python" "enterprise" "Enterprise" }}
 <aside class="sidebar" aria-label="Browse">
+  {{ $upd := where $posts "Params.updated" "!=" nil }}
+  {{ with $upd }}
+  <section>
+    <h2>Recently updated</h2>
+    <ul class="recent">
+      {{ range first 5 (sort . "Params.updated" "desc") }}
+      <li><a href="{{ .RelPermalink }}#timeline-of-updates">{{ .Params.cve }}</a><span>{{ dateFormat "2 Jan" .Params.updated }}</span></li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
   <section>
     <h2>Ecosystems</h2>
     <ul class="facet">

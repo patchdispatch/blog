@@ -12,6 +12,7 @@
         <span>{{ .Params.cve }}</span>
         <span>{{ .Params.ecosystem }}</span>
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+        {{ with .Params.updated }}<a class="updated-badge" href="#timeline-of-updates">Updated {{ dateFormat "2 Jan 2006" . }}</a>{{ end }}
       </p>
       {{ if .Params.exploited }}<p class="exploited">Actively exploited: listed in the CISA KEV catalog</p>{{ end }}
     </div>
@@ -50,6 +51,8 @@
     </ul>
   </section>
   {{ end }}
+
+  {{ with .File }}<p class="history"><a href="https://github.com/patchdispatch/blog/commits/main/content/posts/{{ .LogicalName }}">Every version of this post on GitHub</a></p>{{ end }}
 
   <p class="report">Spotted a mistake? <a href="mailto:{{ site.Params.corrections_email }}?subject={{ .Params.cve | urlquery }}">Report it</a> and the correction is published on this page.</p>
 </article>

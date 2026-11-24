@@ -7,6 +7,7 @@
       <span>{{ .Params.ecosystem }}</span>
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
       {{ if .Params.exploited }}<span class="exploited">Exploited in the wild</span>{{ end }}
+      {{ with .Params.updated }}<span class="updated-label">Updated {{ dateFormat "2 Jan" . }}</span>{{ end }}
     </span>
   </a>
 </li>

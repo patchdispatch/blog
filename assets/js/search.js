@@ -39,6 +39,8 @@
     t.setAttribute("datetime", p.date);
     meta.appendChild(t);
     if (p.exploited) meta.appendChild(el("span", "exploited", "Exploited in the wild"));
+    if (p.updated) meta.appendChild(el("span", "updated-label", "Updated " +
+      new Date(p.updated + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short" })));
     a.appendChild(score); a.appendChild(el("span", "title", p.title)); a.appendChild(meta);
     li.appendChild(a);
     return li;
