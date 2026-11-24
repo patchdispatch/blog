@@ -124,6 +124,8 @@ footer.site a { color: var(--muted); }
 .timeline dt { font-size: 0.8rem; color: var(--muted); margin: 0 0 0.15rem; }
 .timeline dd { margin: 0; font-size: 0.95rem; font-weight: 600; font-variant-numeric: tabular-nums; }
 
+.timeline-note { font: 600 0.95rem/1.45 var(--sans); color: var(--critical); margin: -0.75rem 0 1.5rem; }
+
 .ai-notice { font: 0.925rem/1.5 var(--sans); background: var(--wash); padding: 0.75rem 1rem; margin: 0 0 2rem; border-radius: 4px; }
 
 /* Long-form text */

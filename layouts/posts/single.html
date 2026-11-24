@@ -24,6 +24,12 @@
     <div><dt>Fix released</dt><dd>{{ with .Params.fix_released }}<time datetime="{{ . }}">{{ dateFormat "2 Jan 2006" . }}</time>{{ else }}See the vendor advisory{{ end }}</dd></div>
     {{ with .Params.last_checked }}<div><dt>Last checked</dt><dd><time datetime="{{ . }}">{{ dateFormat "2 Jan 2006" . }}</time></dd></div>{{ end }}
   </dl>
+  {{ if and .Params.fix_released .Params.kev_added }}
+    {{ $days := div (sub (time.AsTime .Params.kev_added).Unix (time.AsTime .Params.fix_released).Unix) 86400 }}
+    {{ if gt $days 0 }}<p class="timeline-note">A fix was available for {{ $days }} {{ cond (eq $days 1) "day" "days" }} before exploitation was confirmed. If it isn't installed yet, install it now.</p>
+    {{ else if lt $days 0 }}<p class="timeline-note">The fix came {{ sub 0 $days }} {{ cond (eq $days -1) "day" "days" }} after exploitation was confirmed.</p>
+    {{ else }}<p class="timeline-note">The fix and the confirmation of exploitation came on the same day.</p>{{ end }}
+  {{ end }}
   {{ end }}
 
   {{ with .GetTerms "tags" }}
