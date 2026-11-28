@@ -1,0 +1,5 @@
+{{- $c := float (default 0 .) -}}
+{{- $s := "low" -}}
+{{- if le $c 0.0 }}{{ $s = "pending" }}{{ end -}}
+{{- if le $c 0.0 }}{{ else if ge $c 9.0 }}{{ $s = "critical" }}{{ else if ge $c 7.0 }}{{ $s = "high" }}{{ else if ge $c 4.0 }}{{ $s = "medium" }}{{ end -}}
+{{- return $s -}}

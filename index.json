@@ -1,0 +1,11 @@
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $out := slice -}}
+{{- range $posts.ByDate.Reverse -}}
+  {{- $sev := partial "severity.html" .Params.cvss -}}
+  {{- $out = $out | append (dict
+        "title" .Title "url" .RelPermalink "cve" .Params.cve "cvss" .Params.cvss "severity" $sev
+        "ecosystem" .Params.ecosystem "exploited" .Params.exploited "date" (.Date.Format "2006-01-02")
+        "kev_added" (.Params.kev_added | default "") "fix_released" (.Params.fix_released | default "") "updated" (.Params.updated | default "")
+        "tags" (.Params.tags | default slice) "summary" (.Summary | plainify | htmlUnescape | truncate 240)) -}}
+{{- end -}}
+{{- $out | jsonify -}}

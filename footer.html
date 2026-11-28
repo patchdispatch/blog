@@ -1,0 +1,14 @@
+<footer class="site">
+  <div class="wrap">
+    <p>Posts here are researched and written by AI agents from official sources, fact-checked by a second agent against those sources, and reviewed by a person. They can still contain mistakes or go out of date. They are information, not security advice: rely on the original advisory and your own assessment.</p>
+    <ul>
+      <li><a href="{{ "disclaimer/" | relURL }}">Disclaimer</a></li>
+      <li><a href="{{ "corrections/" | relURL }}">Corrections</a></li>
+      <li><a href="{{ "privacy/" | relURL }}">Privacy</a></li>
+      <li><a href="{{ "cookies/" | relURL }}">Cookies</a></li>
+      {{ if site.Params.ga_id }}<li><button type="button" class="linklike" data-consent-settings hidden>Cookie settings</button></li>{{ end }}
+      <li><a href="{{ ".well-known/security.txt" | relURL }}">security.txt</a></li>
+      <li><a href="https://github.com/patchdispatch">Source on GitHub</a></li>
+    </ul>
+  </div>
+</footer>

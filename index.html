@@ -1,0 +1,22 @@
+{{ define "main" }}
+<section class="intro">
+  <h1>Patch Dispatch</h1>
+  <p class="tagline">Patch it before they dispatch it.</p>
+  <p>Every vulnerability here is already being exploited in the wild: Windows, Linux, PHP, npm, Python and enterprise software. AI agents research each one in official sources, a second agent checks every claim against those sources, and a person reviews the post before it goes out.</p>
+</section>
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ with $posts }}
+<div class="with-sidebar">
+  <div class="main-col">
+    <ol class="dispatches">
+      {{ range first 10 .ByDate.Reverse }}{{ partial "dispatch-row.html" . }}{{ end }}
+    </ol>
+    {{ if gt (len .) 10 }}<p class="more"><a href="{{ "posts/" | relURL }}?page=2">Older dispatches</a></p>{{ end }}
+    <p class="more"><a href="{{ "posts/" | relURL }}">All dispatches, with search and filters</a></p>
+  </div>
+  {{ partial "sidebar.html" . }}
+</div>
+{{ else }}
+<p class="empty">No dispatches yet. The first one is on its way; follow the <a href="{{ "index.xml" | relURL }}">RSS feed</a> to get it when it lands.</p>
+{{ end }}
+{{ end }}
