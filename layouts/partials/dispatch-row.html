@@ -1,7 +1,7 @@
 {{ $sev := partial "severity.html" .Params.cvss }}
 <li class="dispatch sev-{{ $sev }}">
   <a href="{{ .RelPermalink }}">
-    <span class="score" aria-label="CVSS {{ .Params.cvss }}, {{ $sev }} severity">{{ .Params.cvss }}</span>
+    <span class="score" aria-label="{{ if eq $sev "pending" }}CVSS not scored yet{{ else }}CVSS {{ .Params.cvss }}, {{ $sev }} severity{{ end }}">{{ if eq $sev "pending" }}–{{ else }}{{ .Params.cvss }}{{ end }}</span>
     <span class="title">{{ .Title }}</span>
     <span class="meta">
       <span>{{ .Params.ecosystem }}</span>

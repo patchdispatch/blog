@@ -82,6 +82,7 @@ footer.site a { color: var(--muted); }
 .sev-high     { --sev: var(--high);     --edge: 7px; }
 .sev-medium   { --sev: var(--medium);   --edge: 4px; }
 .sev-low      { --sev: var(--low);      --edge: 2px; }
+.sev-pending  { --sev: var(--muted);    --edge: 2px; }
 
 /* Dispatch list */
 .dispatches { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
@@ -237,3 +238,7 @@ header.site nav { margin-left: auto; }
 .prose h2#timeline-of-updates { border-top: 3px solid var(--link); padding-top: 0.75rem; }
 .prose h3 { font: 700 1rem/1.3 var(--sans); margin: 1.5rem 0 0.4rem; color: var(--link); }
 .history { font: 0.9rem var(--sans); margin-top: 2rem; }
+
+/* Images */
+.banner { display: block; width: 100%; height: auto; border-radius: 6px; margin: 0 0 1.5rem; }
+.post-image { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 340; border-radius: 6px; margin: 0 0 1.5rem; }

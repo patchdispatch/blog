@@ -1,7 +1,8 @@
 {{ define "main" }}
 <section class="intro">
-  <h1>Patch Dispatch</h1>
-  <p class="tagline">Patch it before they dispatch it.</p>
+  <h1 class="visually-hidden">Patch Dispatch: patch it before they dispatch it.</h1>
+  <img class="banner" src="{{ "images/banner.png" | relURL }}" width="1600" height="400"
+       alt="Patch Dispatch. Patch it before they dispatch it. Actively exploited vulnerabilities in Windows, Linux, PHP, npm, Python and enterprise software.">
   <p>Every vulnerability here is already being exploited in the wild: Windows, Linux, PHP, npm, Python and enterprise software. AI agents research each one in official sources, a second agent checks every claim against those sources, and a person reviews the post before it goes out.</p>
 </section>
 {{ $posts := where site.RegularPages "Section" "posts" }}

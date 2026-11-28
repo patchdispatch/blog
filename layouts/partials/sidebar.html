@@ -24,10 +24,10 @@
   <section>
     <h2>Severity</h2>
     <ul class="facet">
-      {{ range slice "critical" "high" "medium" "low" }}
+      {{ range slice "critical" "high" "medium" "low" "pending" }}
         {{ $sev := . }}{{ $n := 0 }}
         {{ range $posts }}{{ if eq (partial "severity.html" .Params.cvss) $sev }}{{ $n = add $n 1 }}{{ end }}{{ end }}
-        {{ if $n }}<li class="sev-{{ $sev }}"><a href="{{ "posts/" | relURL }}?sev={{ $sev }}">{{ $sev | title }}</a><span>{{ $n }}</span></li>{{ end }}
+        {{ if $n }}<li class="sev-{{ $sev }}"><a href="{{ "posts/" | relURL }}?sev={{ $sev }}">{{ if eq $sev "pending" }}Not scored yet{{ else }}{{ $sev | title }}{{ end }}</a><span>{{ $n }}</span></li>{{ end }}
       {{ end }}
     </ul>
   </section>

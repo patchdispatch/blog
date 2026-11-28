@@ -31,8 +31,9 @@
   function row(p) {
     var li = el("li", "dispatch sev-" + p.severity);
     var a = el("a"); a.href = p.url;
-    var score = el("span", "score", String(p.cvss));
-    score.setAttribute("aria-label", "CVSS " + p.cvss + ", " + p.severity + " severity");
+    var pending = p.severity === "pending";
+    var score = el("span", "score", pending ? "–" : String(p.cvss));
+    score.setAttribute("aria-label", pending ? "CVSS not scored yet" : "CVSS " + p.cvss + ", " + p.severity + " severity");
     var meta = el("span", "meta");
     meta.appendChild(el("span", "", p.ecosystem));
     var t = el("time", "", new Date(p.date + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }));

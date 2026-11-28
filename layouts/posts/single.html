@@ -1,10 +1,11 @@
 {{ define "main" }}
 {{ $sev := partial "severity.html" .Params.cvss }}
 <article class="post sev-{{ $sev }}">
+  {{ with .Params.ecosystem }}<img class="post-image" src="{{ printf "images/ecosystems/%s-strip.png" . | relURL }}" width="1200" height="340" alt="" loading="eager">{{ end }}
   <header class="post-head">
     <div class="score-block">
-      <span class="score-big">{{ .Params.cvss }}</span>
-      <span class="sev-name">{{ $sev | title }}</span>
+      <span class="score-big">{{ if eq $sev "pending" }}–{{ else }}{{ .Params.cvss }}{{ end }}</span>
+      <span class="sev-name">{{ if eq $sev "pending" }}Not scored yet{{ else }}{{ $sev | title }}{{ end }}</span>
     </div>
     <div>
       <h1>{{ .Title }}</h1>
